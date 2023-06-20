@@ -1,37 +1,215 @@
-@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap");
+.row {
+  padding: 55px;
+  position: relative;
+  height: 150px;;
+}
 
-body {
-  background-color: #0f2c41;
-  background-image: url("https://i.imgur.com/PFnfpkq.png");
+.cube {
+  position: relative;
+  display:inline-block;
+}
+
+.side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
   text-align: center;
-  font-weight: 700;
+  line-height: 100px;
+  color: white;
+  font-size: 40px;
+  border: rgb(0, 0, 0, 0.25) solid 1px;
+  border-radius: 5px;
+}
+.rainbow > *{
+  background: linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 1) 0%,
+      rgba(255, 154, 0, 1) 10%,
+      rgba(208, 222, 33, 1) 20%,
+      rgba(79, 220, 74, 1) 30%,
+      rgba(63, 218, 216, 1) 40%,
+      rgba(47, 201, 226, 1) 50%,
+      rgba(28, 127, 238, 1) 60%,
+      rgba(95, 21, 242, 1) 70%,
+      rgba(186, 12, 248, 1) 80%,
+      rgba(251, 7, 217, 1) 90%,
+      rgba(255, 0, 0, 1) 100%
+  );
+}
+.red>* {
+  background-color: rgba(134, 7, 47, 0.75);
 }
 
-#hello-wrapper {
-  color: #fff;
-  font-family: 'Source Sans Pro', sans-serif;
+.orange>* {
+  background-color: rgba(200, 65, 32, 0.75);
 }
 
-.typewriter {
-  border-right: solid 5px transparent;
-  white-space: nowrap;
-  overflow: hidden;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 50px;
-  animation:
-  animated-text 1.2s steps(17, end) 1s 1 normal both
+.yellow>* {
+  background-color: rgba(175, 199, 56, 0.75);
 }
 
-/* text animation */
-@keyframes animated-text {
-  from {
-    width: 0;
+.green>* {
+  background-color: rgba(117, 200, 139, 0.75);
+}
+
+.blue>* {
+  background-color: rgba(46, 123, 224, 0.75);
+}
+
+.purple>* {
+  background-color: rgba(82, 12, 139, 0.75);
+}
+
+.left {
+  transform: rotateY(-90deg) rotateZ(90deg) translateZ(50px) translateY(50px);
+}
+
+
+.front {
+  text-decoration: underline;
+}
+
+.back {
+  transform: rotateX(180deg) translateZ(100px);
+}
+
+.right {
+  transform: rotateY(90deg) rotateZ(270deg) translateZ(50px) translateY(50px);
+}
+
+.top {
+  transform: rotateX(270deg)  rotateZ(180deg) translateY(-50px) translateZ(50px) ;
+}
+
+
+.bottom {
+  transform: rotateX(270deg) rotateZ(180deg) rotateY(180deg) translateZ(50px) translateY(-50px);
+}
+
+.one {
+  transform: rotateX(180deg);
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+  animation: land-on-one 10s 1;
+}
+.two {
+  transform: rotateX(270deg) ;
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+}
+.three {
+  transform: rotateX(90deg) rotateZ(-90deg);
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+}
+.four {
+  transform: rotateX(90deg) rotateZ(90deg);
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+}
+.five {
+  transform: rotateX(90deg) rotateY(180deg);
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+}
+.six{
+  transform: none;
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+}
+.spin {
+  cursor: pointer;
+  transform-origin: 50px 50px -50px;
+  transform-style: preserve-3d;
+  animation: spin-origin-50 3s linear infinite;
+}
+
+@keyframes spin-origin-50 {
+  0% {
+      transform: rotateX(90deg) rotateY(180deg);
+      transform-origin: 50px 50px -50px;
   }
-  to {
-    width: 100%;
+  50% {
+      transform: rotateX(270deg)rotateY(360deg);
+      transform-origin: 50px 50px -50px;
+  }
+  100% {
+      transform: rotateX(450deg)rotateY(540deg);
+      transform-origin: 50px 50px -50px;
   }
 }
 
-#particles-js {
-  height: 100vh;
+@keyframes spin-test-X {
+  0% {
+      transform: rotateX(0deg);
+      transform-origin: 50px 50px -50px;
+  }
+  100% {
+      transform: rotateX(360deg);
+      transform-origin: 50px 50px -50px;
+  }
 }
+
+/* Box Model Hack */
+*{
+  box-sizing: border-box;
+}
+
+/******************************************
+/* LAYOUT
+/*******************************************/
+
+/******************************************
+/* ADDITIONAL STYLES
+/*******************************************/
+
+.colourPicker{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin:100px;
+  align-items:center;
+  flex-direction:column;
+}
+section > section {
+  display:flex;
+}
+.colourPicker > section > section {
+  width: 2px;
+  height: 2px;
+}
+.lightnessPicker{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin:100px;
+  align-items:center;
+  flex-direction:column;
+}
+.lightnessPicker > section{
+  width: 16px;
+  height: 2px;
+}
+
+.pickers {
+  display: flex;
+}
+.opacityPicker{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin:100px;
+  align-items:center;
+  flex-direction:column;
+}
+.opacityPicker > section{
+  width: 16px;
+  height: 2px;
+}
+.checkerboard {
+  background-image: linear-gradient(45deg, #808080 25%, transparent 25%), linear-gradient(-45deg, #808080 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #808080 75%), linear-gradient(-45deg, transparent 75%, #808080 75%);
+  background-size: 8px 8px;
+  background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
+}
+
+

@@ -1,111 +1,94 @@
-//particles
-particlesJS("particles-js", {
-  "particles": {
-    "number": {
-      "value": 355,
-      "density": {
-        "enable": true,
-        "value_area": 789.1476416322727
-      }
-    },
-    "color": {
-      "value": "#ffffff"
-    },
-    "shape": {
-      "type": "circle",
-      "stroke": {
-        "width": 0,
-        "color": "#000000"
-      },
-      "polygon": {
-        "nb_sides": 5
-      },
-      "image": {
-        "src": "img/github.svg",
-        "width": 100,
-        "height": 100
-      }
-    },
-    "opacity": {
-      "value": 0.48927153781200905,
-      "random": false,
-      "anim": {
-        "enable": true,
-        "speed": 0.2,
-        "opacity_min": 0,
-        "sync": false
-      }
-    },
-    "size": {
-      "value": 2,
-      "random": true,
-      "anim": {
-        "enable": true,
-        "speed": 2,
-        "size_min": 0,
-        "sync": false
-      }
-    },
-    "line_linked": {
-      "enable": false,
-      "distance": 150,
-      "color": "#ffffff",
-      "opacity": 0.4,
-      "width": 1
-    },
-    "move": {
-      "enable": true,
-      "speed": 0.2,
-      "direction": "none",
-      "random": true,
-      "straight": false,
-      "out_mode": "out",
-      "bounce": false,
-      "attract": {
-        "enable": false,
-        "rotateX": 600,
-        "rotateY": 1200
-      }
-    }
-  },
-  "interactivity": {
-    "detect_on": "canvas",
-    "events": {
-      "onhover": {
-        "enable": true,
-        "mode": "bubble"
-      },
-      "onclick": {
-        "enable": true,
-        "mode": "push"
-      },
-      "resize": true
-    },
-    "modes": {
-      "grab": {
-        "distance": 400,
-        "line_linked": {
-          "opacity": 1
-        }
-      },
-      "bubble": {
-        "distance": 83.91608391608392,
-        "size": 1,
-        "duration": 3,
-        "opacity": 1,
-        "speed": 3
-      },
-      "repulse": {
-        "distance": 200,
-        "duration": 0.4
-      },
-      "push": {
-        "particles_nb": 4
-      },
-      "remove": {
-        "particles_nb": 2
-      }
-    }
-  },
-  "retina_detect": true
+
+initializeColourPicker(50,100);
+initializeLightnessPicker();
+initializeOpacityPicker();
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".cube").forEach((element) => {
+        element.addEventListener("click", async function() {
+            const diceRoll = await rollDice();
+            if(diceRoll == 1){
+                this.classList.remove('spin');
+                this.classList.add('one');
+            } else if(diceRoll == 2){
+                this.classList.remove('spin');
+                this.classList.add('two');
+            } else if(diceRoll == 3){
+                this.classList.remove('spin');
+                this.classList.add('three');
+            } else if(diceRoll == 4){
+                this.classList.remove('spin');
+                this.classList.add('four');
+            } else if(diceRoll == 5){
+                this.classList.remove('spin');
+                this.classList.add('five');
+            } else if(diceRoll == 6){
+                this.classList.remove('spin');
+                this.classList.add('six');
+            }
+
+        });
+    });
 });
+
+function setDiceColor(color){
+    document.querySelector('.cube').classList.remove('rainbow');
+    const sides = document.querySelectorAll('.side');
+    for(let side of sides){
+        side.style.backgroundColor=color;
+    }
+}
+
+async function rollDice(){
+    const APIResponse = (await fetch('https://rolz.org/api/?1d6.json'));
+    const diceRoll = await APIResponse.json();
+    return diceRoll.result;
+}
+
+function initializeColourPicker(lightness, opacity){
+    colourPicker = document.querySelector('.colourPicker');
+    colourPicker.innerHTML = "";
+    for(let j=0; j<100; j++){
+        const rowSection = document.createElement('section');
+        colourPicker.appendChild(rowSection);
+        for(let i=0; i<360; i++){
+          let colourSection = document.createElement('section');
+          colourSection.style.backgroundColor = "hsla(" + i + ", " + j + "%, " + lightness + "%, " + opacity + "%)";
+          colourSection.addEventListener("click", () => setDiceColor("hsla(" + i + ", " + j + "%, " + lightness + "%, " + opacity + "%"));
+          rowSection.appendChild(colourSection);
+        }
+      }
+}
+function initializeLightnessPicker(){
+    lightnessPicker = document.querySelector('.lightnessPicker');
+    for(let i=0; i<100; i++){
+        let lightnessSection = document.createElement('section');
+        lightnessSection.style.backgroundColor = "hsl(0, 0%, " + i + "%";
+        lightnessSection.addEventListener("click", () => initializeColourPicker(i, 100));
+        lightnessPicker.appendChild(lightnessSection);
+    }
+}
+function initializeOpacityPicker(){
+    opacityPicker = document.querySelector('.opacityPicker');
+    for(let i=0; i<100; i++){
+        let opacitySection = document.createElement('section');
+        opacitySection.style.backgroundColor = "hsla(0, 0%, 0%, " + i + "%";
+        opacitySection.addEventListener("click", () => initializeColourPicker(50, i));
+        opacityPicker.appendChild(opacitySection);
+    }
+}
+
+function initializePicker(){
+    opacityPicker = document.querySelector('.opacityPicker');
+    for(let i=100; i>0; i--){
+        let opacitySection = document.createElement('section');
+        opacitySection.style.backgroundColor = "hsla(" + Hue + ", " + Saturation + "%, " + Lightness + "%, " + Alpha + "%";
+        opacitySection.addEventListener("click", () => {
+            Aplha = i;
+            initializePicker();
+        });
+        opacityPicker.appendChild(opacitySection);
+    }
+
+}

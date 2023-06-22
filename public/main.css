@@ -155,11 +155,11 @@
 .blank, .options {
   font-family: 'Courier New', Courier, monospace;
   background: black;
-  color: green;
+  color: rgb(83, 221, 83);
   font-weight: bolder;
 }
 .options {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .message {

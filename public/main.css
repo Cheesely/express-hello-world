@@ -209,3 +209,18 @@ html {
   }
 
 }
+
+form {
+  display: flex;
+  justify-content: center;
+}
+button {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  padding:30px;
+  color: white;
+  background: radial-gradient(
+  rgba(36, 11, 54, 0.8) 0%,
+    rgba(195, 20, 50, 0.8) 100%
+  );
+}

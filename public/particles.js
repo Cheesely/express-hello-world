@@ -52,14 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 this.classList.add('spin');
                 const activeOptions = document.querySelector(".options .active");
                 const nextOptions = document.querySelector(".options .active~section");
+                
+                activeOptions.classList.remove("active");
+                activeOptions.classList.add("hidden");
                 if (!nextOptions){
                     document.querySelector(".diceContainer").classList.add("hidden");
                     document.querySelector("button").classList.remove("hidden");
                 }
-                activeOptions.classList.remove("active");
-                nextOptions.classList.remove("hidden");
-                activeOptions.classList.add("hidden");
-                nextOptions.classList.add("active");
+                else {
+                    nextOptions.classList.remove("hidden");
+                    nextOptions.classList.add("active");
+                }
                 
             }
         });

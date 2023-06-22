@@ -12,6 +12,7 @@
 
 <body>
     <h1>Roll the dice to make your birthday card!</h1>
+    <section class="topSection">
     <div class="diceContainer">
         <div class="cube spin rainbow">
             <div class="side back">1</div>
@@ -22,9 +23,6 @@
             <div class="side front">6</div> 
         </div>
     </div>
-    <form>
-        <button class="hidden" type=submit>Start Again</button>
-    </form>
     <section class="options">
         <section class="active" id="one">
             <p>[1 - <span>Parker</span>]</p>
@@ -63,7 +61,7 @@
             <p>[2 - <span>Sunshine</span>]</p>
             <p>[3 - <span>Giggles</span>]</p>
             <p>[4 - <span>Good Vibes Only</span>]</p>
-            <p>[5 - <span>Chese Bumps</span>]</p>
+            <p>[5 - <span>Chest Bumps</span>]</p>
             <p>[6 - <span>High Scores</span>]</p>
         </section>
         <section class="hidden" id="six">
@@ -74,6 +72,11 @@
             <p>[5 - <span>Colours</span>]</p>
             <p>[6 - <span>Predictions</span>]</p>
         </section>
+    </section>
+    
+    <form>
+        <button class="hidden" type=submit>Start Again</button>
+    </form>
     </section>
     <section class="message">
         <p>Happy Birthday, <span class="blank active"  data-number="one"> [Blank 1] </span>! <span class="blank" data-number="two"> [ 2 ] </span></p>

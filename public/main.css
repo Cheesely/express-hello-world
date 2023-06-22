@@ -1,8 +1,11 @@
+.topSection {
+  display:flex;
+}
+
 .diceContainer {
-  padding: 55px;
+   padding: 55px; 
   position: relative;
   height: 200px;
-  width: 100%;
   display:flex;
   justify-content: center;
   padding-right:150px;
